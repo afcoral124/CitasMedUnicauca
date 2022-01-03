@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PracticaFragmentos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="musicatxt">Music</string>
+    <string name="contactostxt">Contacts</string>
+    <string name="infotxt">Information</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

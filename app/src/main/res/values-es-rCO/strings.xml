@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PracticaFragmentos</string>
+    <string name="musicatxt">Musica</string>
+    <string name="contactostxt">Contactos</string>
+    <string name="infotxt">Informacion</string>
+</resources>
