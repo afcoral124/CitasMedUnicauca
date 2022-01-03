@@ -22,28 +22,32 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#2038BD"
             android:onClick="onClick"
-            android:text="Médico General" />
+            android:text="Médico General"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/Especialista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#2038BD"
-            android:text="Especialista" />
+            android:text="Especialista"
+            android:textColor="#FFFFFF"/>
 
         <Button
             android:id="@+id/Examenes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#2038BD"
-            android:text="Exámenes de laboratorio" />
+            android:text="Exámenes de laboratorio"
+            android:textColor="#FFFFFF"/>
 
         <Button
             android:id="@+id/Terapeuta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#2038BD"
-            android:text="Terapias y rehabilitación" />
+            android:text="Terapias y rehabilitación"
+            android:textColor="#FFFFFF"/>
 
 
     </LinearLayout>

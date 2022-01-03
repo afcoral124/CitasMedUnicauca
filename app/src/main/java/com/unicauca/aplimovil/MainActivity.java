@@ -1,5 +1,6 @@
 package com.unicauca.aplimovil;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         fragCategorias = new FragmentCategorias();
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragmentos, fragCategorias).commit();
+
+
     }
 
     public void onClick(View view) {
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.MedicoGeneral:
                 opcion=1;
-                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales);
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales).addToBackStack(null);
                 break;
             case R.id.cardAtras:
                 if (opcion==1) {
@@ -37,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     opcion=1;
-                    transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales);
+                    transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales).addToBackStack(null);
                 }
                 break;
         }transaction.commit();
     }
+
 }
