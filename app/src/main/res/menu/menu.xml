@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Mis citas"
+        android:icon="@drawable/ic_android"
+        android:id="@+id/misCitas"></item>
+
+    <group android:id="@+id/group1">
+        <item android:title="Agendar citas"
+            android:icon="@drawable/ic_android"
+            android:id="@+id/agendarCita"></item>
+        <item android:title="Categorias de servicios"
+            android:icon="@drawable/ic_attach_file"
+            android:id="@+id/categoriaServicios"></item>
+
+        <item android:title="Acerca De(Tutorial de la app)"
+            android:icon="@drawable/ic_attach_file"
+            android:id="@+id/acercaDe"></item>
+
+    </group>
+
+    <group android:id="@+id/group2"> android:checkableBehavior="single"
+        <item
+            android:id="@+id/desarrolladores"
+            android:title="Desarrolladores">
+            <menu>
+                <item
+                    android:id="@+id/sobreNosotros"
+                    android:icon="@drawable/ic_attach_file"
+                    android:title="Sobre nosotros"/>
+                <item
+                    android:id="@+id/appMovil"
+                    android:icon="@drawable/ic_android"
+                    android:title="Appmovil"/>
+            </menu>
+        </item>
+    </group>
+    <item android:title="Cerrar Sesión"
+        android:icon="@drawable/ic_attach_file"
+        android:id="@+id/cerrarSesion"></item>
+
+</menu>
