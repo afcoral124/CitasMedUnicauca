@@ -7,9 +7,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -47,6 +49,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.agendarCita:
                 Log.d("opcion 2", "seleccionada opcion 2");
+
                 break;
             case R.id.categoriaServicios:
                 Log.d("opcion 3", "seleccionada opcion 3");
@@ -66,6 +69,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void abrirAgendarCitas(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+                                                     //MainActivity = clase de agendar citas
+        startActivity(intent);
     }
 
     @Override
