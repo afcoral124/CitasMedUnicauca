@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.agendarCita:
                 Log.d("opcion 2", "seleccionada opcion 2");
-
+                abrirActividad(MainActivity.class);
                 break;
             case R.id.categoriaServicios:
                 Log.d("opcion 3", "seleccionada opcion 3");
@@ -73,9 +73,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void abrirAgendarCitas(View view){
+
         Intent intent = new Intent(this, MainActivity.class);
                                                      //MainActivity = clase de agendar citas
         startActivity(intent);
+    }
+
+    public void abrirActividad(Class clase){
+
+        Intent newAct = new Intent(getApplicationContext(), clase);
+        startActivity(newAct);
     }
 
     @Override
