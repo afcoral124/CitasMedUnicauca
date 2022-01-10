@@ -4,6 +4,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,14 +50,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales).addToBackStack(null);
                 break;
             case R.id.cardAtras:
-                if (opcion==1) {
-                    opcion=0;
-                    transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragCategorias);
-                }
-                else{
-                    opcion=1;
-                    transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales).addToBackStack(null);
-                }
+                onBackPressed();
                 break;
         }transaction.commit();
     }
@@ -71,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
 
