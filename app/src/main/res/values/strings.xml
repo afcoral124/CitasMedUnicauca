@@ -4,6 +4,7 @@
     <string name="musicatxt">Music</string>
     <string name="contactostxt">Contacts</string>
     <string name="infotxt">Information</string>
+    <string name="nombreStr">name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="ciudades">
         <item>Popayán</item>

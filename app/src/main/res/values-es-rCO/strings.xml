@@ -4,4 +4,5 @@
     <string name="musicatxt">Musica</string>
     <string name="contactostxt">Contactos</string>
     <string name="infotxt">Informacion</string>
+    <string name="nombreStr">Nombre</string>
 </resources>
