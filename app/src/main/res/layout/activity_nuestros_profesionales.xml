@@ -6,110 +6,218 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NuestrosProfesionalesActivity">
 
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:baselineAligned="false"
-            android:gravity="center|start"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:baselineAligned="false"
+                    android:gravity="center|start"
+                    android:orientation="horizontal">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardAtras"
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:clickable="false"
-                android:clipChildren="false"
-                android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardAtras"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:clickable="false"
+                        android:clipChildren="false"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="6dp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="left|center_vertical"
-                    android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/flecha_atras" />
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_marginLeft="5dp"
+                            app:srcCompat="@drawable/flecha_atras" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@id/imageView"
+                            android:text="Back"
+                            android:textSize="20sp"
+                            app:layout_column="2"
+                            app:layout_row="0" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignWithParentIfMissing="true"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_toRightOf="@id/cardAtras"
+                        android:text="Nuestros Profesionales"
+                        android:textSize="20sp"
+                        app:layout_column="3"
+                        app:layout_row="0" />
+
+                </LinearLayout>
+
+                <!--  SECCIONES DE PROFESIONALES -->
 
                 <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_toRightOf="@id/imageView"
-                    android:text="Back"
-                    android:textSize="20sp"
-                    app:layout_column="2"
-                    app:layout_row="0" />
+                    android:layout_marginTop="15dp"
+                    android:text="Medicina General"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerMedGeneral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
 
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Cardiología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25sp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCardiologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Fisioterapia"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25sp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerFisioterapia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignWithParentIfMissing="true"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_toRightOf="@id/cardAtras"
-                android:text="Nuestros Profesionales"
-                android:textSize="20sp"
-                app:layout_column="3"
-                app:layout_row="0" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Fonoaudiología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerFonoaudiologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Ginecología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25sp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerGinecologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Odontología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25sp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerOdontologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Oftalmología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerOftalmologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Oncología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25sp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerOncologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Traumatología"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25sp"
+                    android:textColor="#2AAAE6"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerTraumatologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MisssingConstraints" />
+
+            </LinearLayout>
         </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Medicina General"
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"
-            android:textColor="#2AAAE6"
-            android:textStyle="bold"></TextView>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerMedGeneral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MisssingConstraints" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cardiología"
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"
-            android:textColor="#2AAAE6"
-            android:textStyle="bold"></TextView>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerCardiologia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MisssingConstraints" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ginecología"
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"
-            android:textColor="#2AAAE6"
-            android:textStyle="bold"></TextView>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerGinecologia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MisssingConstraints" />
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

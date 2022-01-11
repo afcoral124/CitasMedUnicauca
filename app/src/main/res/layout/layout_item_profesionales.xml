@@ -5,26 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/idNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombreStr"
+                    android:textSize="20dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginLeft="15dp"/>
+                <androidx.appcompat.widget.AppCompatCheckedTextView
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_height="1sp"
+                    android:background="#E3E3E3"
+                    android:layout_below="@+id/idNombre">
+                </androidx.appcompat.widget.AppCompatCheckedTextView>
 
-            <TextView
-                android:id="@+id/idNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nombreStr"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="15dp"/>
+            </RelativeLayout>
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#65959595" />
 
     </LinearLayout>
+
 </LinearLayout>

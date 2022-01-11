@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfesionales.ViewHolderUsuarios> {
+public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfesionales.ViewHolderProfesionales> {
 
     private List<Profesional> listaProfesionales;
 
@@ -33,13 +33,13 @@ public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfes
 
     @NonNull
     @Override
-    public AdaptadorProfesionales.ViewHolderUsuarios onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_nuestros_profesionales, null, false);
-        return new ViewHolderUsuarios(view);
+    public AdaptadorProfesionales.ViewHolderProfesionales onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_profesionales, null, false);
+        return new ViewHolderProfesionales(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdaptadorProfesionales.ViewHolderUsuarios holder, int position) {
+    public void onBindViewHolder(@NonNull AdaptadorProfesionales.ViewHolderProfesionales holder, int position) {
         Profesional p = listaProfesionales.get(position);
         holder.tvNombre.setText(p.getNombre());
 
@@ -50,10 +50,10 @@ public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfes
         return getListaProfesionales().size();
     }
 
-    public class ViewHolderUsuarios extends RecyclerView.ViewHolder{
+    public class ViewHolderProfesionales extends RecyclerView.ViewHolder{
         TextView tvNombre;
 
-        public ViewHolderUsuarios(@NonNull View itemView) {
+        public ViewHolderProfesionales(@NonNull View itemView) {
             super(itemView);
             tvNombre = (TextView) itemView.findViewById(R.id.idNombre);
 
