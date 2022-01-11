@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.unicauca.aplimovil"
+        applicationId "com.unicauca.citasmed"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
@@ -28,8 +28,12 @@ android {
     }
 }
 
-dependencies {
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.google.android.material:material:1.4.0'
@@ -37,6 +41,7 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

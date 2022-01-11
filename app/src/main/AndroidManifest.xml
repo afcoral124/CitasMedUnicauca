@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.unicauca.aplimovil">
+    package="citasmed">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".HomeActivity"
+        <activity android:name="com.unicauca.citasmed.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,19 +18,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"
-            android:parentActivityName=".HomeActivity">
+        <activity android:name="com.unicauca.citasmed.MainActivity"
+            android:parentActivityName="com.unicauca.citasmed.HomeActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value="com.unicauca.citasmed.HomeActivity" />
         </activity>
-        <activity android:name=".NuestrosProfesionalesActivity"
-            android:parentActivityName=".HomeActivity">
+        <activity android:name="com.unicauca.citasmed.NuestrosProfesionalesActivity"
+            android:parentActivityName="com.unicauca.citasmed.HomeActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
+                android:value="com.unicauca.citasmed.HomeActivity" />
         </activity>
     </application>
 

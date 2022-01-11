@@ -1,18 +1,17 @@
-package com.unicauca.aplimovil;
+package com.unicauca.citasmed;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import android.os.Bundle;
 import android.view.View;
+
+import citasmed.R;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

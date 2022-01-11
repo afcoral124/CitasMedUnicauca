@@ -1,9 +1,8 @@
-package com.unicauca.aplimovil.adapter;
+package com.unicauca.citasmed.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -11,10 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import com.unicauca.aplimovil.R;
-import com.unicauca.aplimovil.modelo.Profesional;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import com.unicauca.citasmed.modelo.Profesional;
+import citasmed.R;
 
 
 public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfesionales.ViewHolderProfesionales> {

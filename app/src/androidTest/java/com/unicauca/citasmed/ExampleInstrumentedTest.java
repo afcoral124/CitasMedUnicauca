@@ -1,4 +1,4 @@
-package com.unicauca.aplimovil;
+package com.unicauca.citasmed;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.unicauca.aplimovil", appContext.getPackageName());
+        assertEquals("com.unicauca.citasmed", appContext.getPackageName());
     }
 }

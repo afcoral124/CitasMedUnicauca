@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "165105187458",
+    "project_id": "citasmeddb",
+    "storage_bucket": "citasmeddb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165105187458:android:18237aa688df13457f529b",
+        "android_client_info": {
+          "package_name": "com.unicauca.citasmed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165105187458-ob3uju72ijtrfk195hf5vm6cpmhd6ceq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5aePl8nKByPG3QA2v585NJU6fGjZxdms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165105187458-ob3uju72ijtrfk195hf5vm6cpmhd6ceq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

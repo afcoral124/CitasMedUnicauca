@@ -1,4 +1,4 @@
-package com.unicauca.aplimovil;
+package com.unicauca.citasmed;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import com.unicauca.aplimovil.adapter.AdaptadorProfesionales;
-import com.unicauca.aplimovil.modelo.Profesional;
+import com.unicauca.citasmed.adapter.AdaptadorProfesionales;
+import com.unicauca.citasmed.modelo.Profesional;
+import citasmed.R;
 
 
 public class NuestrosProfesionalesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

@@ -1,4 +1,4 @@
-package com.unicauca.aplimovil;
+package com.unicauca.citasmed;
 
 import org.junit.Test;
 

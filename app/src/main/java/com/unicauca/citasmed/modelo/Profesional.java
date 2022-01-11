@@ -1,4 +1,4 @@
-package com.unicauca.aplimovil.modelo;
+package com.unicauca.citasmed.modelo;
 
 public class Profesional {
     private String nombre;

@@ -1,4 +1,4 @@
-package com.unicauca.aplimovil;
+package com.unicauca.citasmed;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import citasmed.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentCategorias#newInstance} factory method to
+ * Use the {@link FragmentProfesionales#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentCategorias extends Fragment {
+public class FragmentProfesionales extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class FragmentCategorias extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FragmentCategorias() {
+    public FragmentProfesionales() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class FragmentCategorias extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentContactos.
+     * @return A new instance of fragment FragmentMusica.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentCategorias newInstance(String param1, String param2) {
-        FragmentCategorias fragment = new FragmentCategorias();
+    public static FragmentProfesionales newInstance(String param1, String param2) {
+        FragmentProfesionales fragment = new FragmentProfesionales();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -53,12 +55,13 @@ public class FragmentCategorias extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categorias, container, false);
+        return inflater.inflate(R.layout.fragment_profesionales, container, false);
     }
 }
