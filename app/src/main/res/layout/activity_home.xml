@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
-    tools:context=".HomeActivity">
+    tools:context="com.unicauca.citasmed.HomeActivity">
 
     <ScrollView
         android:layout_width="match_parent"

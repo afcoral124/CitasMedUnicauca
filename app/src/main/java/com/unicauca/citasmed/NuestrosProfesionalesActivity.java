@@ -1,4 +1,6 @@
 package com.unicauca.citasmed;
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -15,6 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.unicauca.citasmed.adapter.AdaptadorProfesionales;
 import com.unicauca.citasmed.modelo.Profesional;
 import citasmed.R;
@@ -24,6 +33,7 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
     private List<Profesional> listaProfesionales;
     private RecyclerView recyclerProfesionales;
     public LinearLayout opcion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,54 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         generarProfesionalesOftalmologia();
         generarProfesionalesOncologia();
         generarProfesionalesTraumatologia();
+
+        /*----------------------------------------------------------------------------------------------------
+        Profesional profesional = new Profesional("Juan Sebastián Betancourt Balanta");
+        //Escritura en la DB
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://citasmeddb-default-rtdb.firebaseio.com/");
+        DatabaseReference myRef = database.getReference("solounprofesional"); //clave
+        myRef.setValue(profesional); //valor
+
+        //Lectura en la DB
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Profesional value = dataSnapshot.getValue(Profesional.class); //Indicar el tipo de objeto que recibimos
+                System.out.println(value.getNombre());
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        ----------------------------------------------------------------------------------------------------*/
+        //Escritura en la DB
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://citasmeddb-default-rtdb.firebaseio.com/");
+        DatabaseReference myRef = database.getReference("Traumatologos"); //clave
+        //myRef.setValue("hola"); //valor
+
+        //Lectura en la DB
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                GenericTypeIndicator<ArrayList<Profesional>> t = new GenericTypeIndicator<ArrayList<Profesional>>() {};
+                ArrayList<Profesional> value = dataSnapshot.getValue(t);
+                System.out.println(value.get(0).getNombre());
+                System.out.println(value.get(1).getNombre());
+                System.out.println(value.get(2).getNombre());
+                System.out.println(value.get(3).getNombre());
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     public void onClick(View view) {

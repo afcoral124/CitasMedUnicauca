@@ -3,7 +3,9 @@ package com.unicauca.citasmed.modelo;
 public class Profesional {
     private String nombre;
 
-
+    public Profesional(){
+        nombre="";
+    }
     public Profesional(String nombre) {
         this.nombre = nombre;
 
