@@ -6,14 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NuestrosProfesionalesActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -33,13 +27,14 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:clickable="false"
+                        android:clickable="true"
                         android:clipChildren="false"
                         android:foreground="?selectableItemBackground"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="6dp"
                         app:layout_columnWeight="1"
-                        app:layout_rowWeight="1">
+                        app:layout_rowWeight="1"
+                        android:onClick="onClick">
 
                         <ImageView
                             android:id="@+id/imageView"
@@ -75,149 +70,266 @@
                         android:text="Nuestros Profesionales"
                         android:textSize="20sp"
                         app:layout_column="3"
-                        app:layout_row="0" />
+                        app:layout_row="0"
+                        />
 
                 </LinearLayout>
 
-                <!--  SECCIONES DE PROFESIONALES -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left">
+
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvTituloProfesiones"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Medicina General"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25dp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerMedGeneral"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="sans-serif"
+                    android:paddingHorizontal="20dp"
+                    android:text="Escoja una Profesión"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:layout_toRightOf="@+id/tvTituloProfesiones"
+                    android:id="@+id/cardUbicacion"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Cardiología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerCardiologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="bottom"
+                    android:foreground="?selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Fisioterapia"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerFisioterapia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:spinnerMode="dropdown" />
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Fonoaudiología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25dp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerFonoaudiologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Ginecología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerGinecologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+            </RelativeLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Odontología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerOdontologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+            <!--  SECCIONES DE PROFESIONALES -->
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/LyMed.General"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Oftalmología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25dp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerOftalmologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvMedGeneral"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Medicina General"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="25dp"
+                        android:textColor="#2AAAE6"
+                        android:textStyle="bold" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerMedGeneral"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="MisssingConstraints"
+                        android:scrollbars="vertical"/>
+                </LinearLayout>
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/LyCardiologia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Oncología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerOncologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvCardiologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Cardiología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25sp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerCardiologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/LyFisioterapia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Traumatología"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#2AAAE6"
-                    android:textStyle="bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerTraumatologia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:ignore="MisssingConstraints" />
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvFisioterapia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Fisioterapia"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25sp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerFisioterapia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/LyFonoaudiologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvFonoaudiologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Fonoaudiología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25dp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerFonoaudiologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LyGinecologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvGinecologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Ginecología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25sp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerGinecologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LyOdontologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvOdontologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Odontología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25sp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerOdontologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LyOftalmologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvOftalmologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Oftalmología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25dp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerOftalmologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LyOncologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvOncologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Oncología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25sp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerOncologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LyTraumatologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvTraumatologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Traumatología"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="25sp"
+                            android:textColor="#2AAAE6"
+                            android:textStyle="bold"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerTraumatologia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MisssingConstraints"
+                            android:scrollbars="vertical"/>
+                </LinearLayout>
+
         </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

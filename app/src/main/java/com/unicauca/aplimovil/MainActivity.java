@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragmentos, fragCategorias).commit();
 
+        llenarSpinner();
+    }
+
+    public void llenarSpinner() {
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
