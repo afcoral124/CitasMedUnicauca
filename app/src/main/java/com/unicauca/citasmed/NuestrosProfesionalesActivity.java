@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.unicauca.citasmed.adapter.AdaptadorProfesionales;
 import com.unicauca.citasmed.modelo.Profesional;
@@ -31,6 +32,7 @@ import citasmed.R;
 
 public class NuestrosProfesionalesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private List<Profesional> listaProfesionales;
+    private ArrayList<Profesional> listaMedGeneral;
     private RecyclerView recyclerProfesionales;
     public LinearLayout opcion;
 
@@ -41,63 +43,9 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_nuestros_profesionales);
 
         llenarSpinner();
+
         generarProfesionalesMedicinaGeneral();
-        generarProfesionalesCardiologia();
-        generarProfesionalesFisioterapia();
-        generarProfesionalesFonoaudiologia();
-        generarProfesionalesGinecologia();
-        generarProfesionalesOdontologia();
-        generarProfesionalesOftalmologia();
-        generarProfesionalesOncologia();
-        generarProfesionalesTraumatologia();
 
-        /*----------------------------------------------------------------------------------------------------
-        Profesional profesional = new Profesional("Juan Sebastián Betancourt Balanta");
-        //Escritura en la DB
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://citasmeddb-default-rtdb.firebaseio.com/");
-        DatabaseReference myRef = database.getReference("solounprofesional"); //clave
-        myRef.setValue(profesional); //valor
-
-        //Lectura en la DB
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Profesional value = dataSnapshot.getValue(Profesional.class); //Indicar el tipo de objeto que recibimos
-                System.out.println(value.getNombre());
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        ----------------------------------------------------------------------------------------------------*/
-        //Escritura en la DB
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://citasmeddb-default-rtdb.firebaseio.com/");
-        DatabaseReference myRef = database.getReference("Traumatologos"); //clave
-        //myRef.setValue("hola"); //valor
-
-        //Lectura en la DB
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                GenericTypeIndicator<ArrayList<Profesional>> t = new GenericTypeIndicator<ArrayList<Profesional>>() {};
-                ArrayList<Profesional> value = dataSnapshot.getValue(t);
-                System.out.println(value.get(0).getNombre());
-                System.out.println(value.get(1).getNombre());
-                System.out.println(value.get(2).getNombre());
-                System.out.println(value.get(3).getNombre());
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
     }
 
     public void onClick(View view) {
@@ -202,44 +150,47 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
     private void generarProfesionalesMedicinaGeneral(){
         //Arreglo de profesionales
         listaProfesionales = new ArrayList<>();
+        listaMedGeneral = new ArrayList<>();
         recyclerProfesionales = findViewById(R.id.recyclerMedGeneral);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Maria Fernanda Manrique Sotelo");
-        listaProfesionales.add(p);
-        p = new Profesional("Camilo Stiven Ibarra Nuñez");
-        listaProfesionales.add(p);
-        p = new Profesional("Cristina Aguilera");
-        listaProfesionales.add(p);
-        p = new Profesional("Maria Fernanda Manrique Sotelo");
-        listaProfesionales.add(p);
-        p = new Profesional("Camilo Stiven Ibarra Nuñez");
-        listaProfesionales.add(p);
-        p = new Profesional("Cristina Aguilera");
-        listaProfesionales.add(p);
-        p = new Profesional("Maria Fernanda Manrique Sotelo");
-        listaProfesionales.add(p);
-        p = new Profesional("Camilo Stiven Ibarra Nuñez");
-        listaProfesionales.add(p);
-        p = new Profesional("Cristina Aguilera");
-        listaProfesionales.add(p);
-        p = new Profesional("Maria Fernanda Manrique Sotelo");
-        listaProfesionales.add(p);
-        p = new Profesional("Camilo Stiven Ibarra Nuñez");
-        listaProfesionales.add(p);
-        p = new Profesional("Cristina Aguilera");
-        listaProfesionales.add(p);
-        p = new Profesional("Maria Fernanda Manrique Sotelo");
-        listaProfesionales.add(p);
-        p = new Profesional("Camilo Stiven Ibarra Nuñez");
-        listaProfesionales.add(p);
-        p = new Profesional("Cristina Aguilera");
-        listaProfesionales.add(p);
+        //Escritura en la DB
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://citasmeddb-default-rtdb.firebaseio.com/");
+        DatabaseReference myRef = database.getReference("Profesionales"); //clave
+        //myRef.setValue("hola"); //valor
+
+        //Lectura en la DB
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                GenericTypeIndicator<ArrayList<Profesional>> t = new GenericTypeIndicator<ArrayList<Profesional>>() {};
+                ArrayList<Profesional> value = dataSnapshot.getValue(t);
+                for (int i=0; i<value.size();i++){
+                    if (value.get(i).getId_profesion()==0){
+                        listaProfesionales.add(value.get(i));
+                        System.out.println(i + " "+listaProfesionales.get(i).getNombre()+" hola");
+                    }
+
+                }
+
+                System.out.println("Tamaño vector: "+listaProfesionales.size());
+                //---------------------------------------------------------------------------
+                System.out.println("Tamaño vector: "+listaProfesionales.size());
+                AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
+                recyclerProfesionales.setAdapter(adaptador);
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
 
         //---------------------------------------------------------------------------
-
+        System.out.println("Tamaño vector: "+listaProfesionales.size());
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
     }
@@ -250,15 +201,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerCardiologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Milton Bermudez");
-        listaProfesionales.add(p);
-        p = new Profesional("Armando Casas");
-        listaProfesionales.add(p);
-
-        //---------------------------------------------------------------------------
-
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
     }
@@ -268,15 +210,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerFisioterapia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
 
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
@@ -287,15 +220,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerFonoaudiologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
 
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
@@ -306,15 +230,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerGinecologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
 
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
@@ -325,15 +240,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerOdontologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
 
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
@@ -344,16 +250,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerOftalmologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
-
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
     }
@@ -363,16 +259,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         recyclerProfesionales = findViewById(R.id.recyclerOncologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
-
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
     }
@@ -381,16 +267,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         listaProfesionales = new ArrayList<>();
         recyclerProfesionales = findViewById(R.id.recyclerTraumatologia);
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-        //CREAMOS DE MANERA ESTÁTICA LA LISTA ---------------------------------------
-        Profesional p = null;
-        p = new Profesional("Ana María Muñoz Fernández");
-        listaProfesionales.add(p);
-        p = new Profesional("Laura Andrea Mamián Cerón");
-        listaProfesionales.add(p);
-        p = new Profesional("Carlos Alberto Duque Manríquez");
-        listaProfesionales.add(p);
-        //---------------------------------------------------------------------------
 
         AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
         recyclerProfesionales.setAdapter(adaptador);
