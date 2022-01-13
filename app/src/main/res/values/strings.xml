@@ -7,11 +7,9 @@
     <string name="nombreStr">name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="ciudades">
-        <item>Popayán</item>
+        <item>Popayan</item>
         <item>Cali</item>
-        <item>Jamundí</item>
-        <item>Medellín</item>
-        <item>Bogotá</item>
+        <item>Medellin</item>
     </string-array>
     <string-array name="profesiones">
         <item>Med.General</item>

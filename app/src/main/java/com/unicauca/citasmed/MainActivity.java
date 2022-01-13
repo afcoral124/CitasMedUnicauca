@@ -13,12 +13,9 @@ import android.view.View;
 
 import citasmed.R;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity  {
 
     FragmentCategorias fragCategorias;
-
-
-
 
 
     @Override
@@ -30,20 +27,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         getSupportFragmentManager().beginTransaction().add(R.id.contenedorFragmentos, fragCategorias).commit();
 
-        llenarSpinner();
     }
 
-    public void llenarSpinner() {
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.ciudades, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-    }
 
     //Cuando se presiona una de las categorías, o el botón Atrás
     public void onClick(View view) {
@@ -92,17 +77,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }transaction.commit();
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        //System.out.println(parent.getItemAtPosition(pos));
-        Log.d("Total", String.valueOf(parent.getItemAtPosition(pos)));
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 
     @Override
     public void onBackPressed() {

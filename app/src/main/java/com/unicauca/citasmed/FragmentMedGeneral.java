@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +37,7 @@ import citasmed.R;
  * Use the {@link FragmentMedGeneral#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentMedGeneral extends Fragment {
+public class FragmentMedGeneral extends Fragment implements AdapterView.OnItemSelectedListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +47,8 @@ public class FragmentMedGeneral extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String ciudad;
+    private View vista;
 
     private RecyclerView recyclerProfesionales;
     public LinearLayout opcion;                  //Es el Layout que se muestra al seleccionar un item del Spinner
@@ -85,12 +90,38 @@ public class FragmentMedGeneral extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View vista = inflater.inflate(R.layout.fragment_medicos_generales, container, false);
+        vista = inflater.inflate(R.layout.fragment_medicos_generales, container, false);
+        llenarSpinner(vista);
         recyclerProfesionales= (RecyclerView) vista.findViewById(R.id.RecyclerMedGeneral);
-        mostrarListaProfesionales(vista);
         return vista;
     }
+
+    public void llenarSpinner(View vista) {
+        Spinner spinner = (Spinner) vista.findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.ciudades, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        //System.out.println(parent.getItemAtPosition(pos));
+        ciudad = String.valueOf(parent.getItemAtPosition(pos));
+        mostrarListaProfesionales(vista);
+        Log.d("Total", String.valueOf(parent.getItemAtPosition(pos)));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
 
     public void mostrarListaProfesionales(View vista){
         opcion = vista.findViewById(R.id.lyMed_General);
@@ -122,7 +153,9 @@ public class FragmentMedGeneral extends Fragment {
                     List<Profesional> value = new ArrayList<>();
                     for(DataSnapshot ds : snapshot.getChildren()) {
                         Profesional persona = ds.getValue(Profesional.class);
-                        value.add(persona);
+                        if (persona.getCiudad().equals(ciudad)){
+                            value.add(persona);
+                        }
                     }
                     AdaptadorProfesionales adaptador = new AdaptadorProfesionales(value);
                     recyclerProfesionales.setAdapter(adaptador);
