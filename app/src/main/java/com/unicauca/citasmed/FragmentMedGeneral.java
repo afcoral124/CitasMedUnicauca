@@ -87,45 +87,20 @@ public class FragmentMedGeneral extends Fragment {
         // Inflate the layout for this fragment
 
         View vista = inflater.inflate(R.layout.fragment_medicos_generales, container, false);
-        recyclerProfesionales= (RecyclerView) vista.findViewById(R.id.recyclerMedGeneral);
+        recyclerProfesionales= (RecyclerView) vista.findViewById(R.id.RecyclerMedGeneral);
         mostrarListaProfesionales(vista);
         return vista;
     }
 
     public void mostrarListaProfesionales(View vista){
-        ocultarOpciones(vista);
         opcion = vista.findViewById(R.id.lyMed_General);
         opcion.setVisibility(View.VISIBLE);
-        recyclerProfesionales = vista.findViewById(R.id.RecyclerMedGeneral);
         generarProfesionales(0);
 
     }
 
     public void seleccionarProfesional(View view){
 
-    }
-
-    public void ocultarOpciones(View vista) {
-        LinearLayout medgeneral = vista.findViewById(R.id.lyMed_General);
-        LinearLayout cardiologia = vista.findViewById(R.id.lyCardiologia);
-        LinearLayout fisioterapia = vista.findViewById(R.id.lyFisioterapia);
-        LinearLayout fonoaudiologia = vista.findViewById(R.id.lyFonoaudiologia);
-        LinearLayout ginecologia = vista.findViewById(R.id.lyGinecologia);
-        LinearLayout odontologia = vista.findViewById(R.id.lyOdontologia);
-        LinearLayout oftalmologia = vista.findViewById(R.id.lyOftalmologia);
-        LinearLayout oncologia = vista.findViewById(R.id.lyOncologia);
-        LinearLayout traumatologia = vista.findViewById(R.id.lyTraumatologia);
-
-        System.out.println("Hasta aquí va bien interno");
-        medgeneral.setVisibility(View.GONE);
-        cardiologia.setVisibility(View.GONE);
-        fisioterapia.setVisibility(View.GONE);
-        fonoaudiologia.setVisibility(View.GONE);
-        ginecologia.setVisibility(View.GONE);
-        odontologia.setVisibility(View.GONE);
-        oftalmologia.setVisibility(View.GONE);
-        oncologia.setVisibility(View.GONE);
-        traumatologia.setVisibility(View.GONE);
     }
 
     private void generarProfesionales(double eleccion){
