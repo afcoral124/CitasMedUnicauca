@@ -6,12 +6,228 @@
     tools:context="com.unicauca.citasmed.FragmentProfesionales">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:text="Lista de médicos"
-        android:textSize="24sp"
-        android:textAlignment="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTituloFragmentProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="Seleccione un profesional de la salud"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+
+
+        <LinearLayout
+            android:id="@+id/lyMed_General"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvMedGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Medicina General"
+                android:layout_marginLeft="10dp"
+                android:textSize="25dp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerMedGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyCardiologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvCardiologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Cardiología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerCardiologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyFisioterapia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFisioterapia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Fisioterapia"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerFisioterapia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lyFonoaudiologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvFonoaudiologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Fonoaudiología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25dp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerFonoaudiologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyGinecologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvGinecologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Ginecología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerGinecologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyOdontologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvOdontologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Odontología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerOdontologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyOftalmologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvOftalmologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Oftalmología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25dp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerOftalmologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyOncologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvOncologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Oncología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerOncologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyTraumatologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvTraumatologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Traumatología"
+                android:layout_marginLeft="10dp"
+                android:textSize="25sp"
+                android:textColor="#2AAAE6"
+                android:textStyle="bold"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerTraumatologia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="MisssingConstraints"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

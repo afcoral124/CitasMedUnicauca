@@ -16,39 +16,122 @@
 
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Seleccione una categoría" />
+
         <Button
             android:id="@+id/MedicoGeneral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2038BD"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
             android:onClick="onClick"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:text="Médico General"
             android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/Especialista"
+            android:id="@+id/btnCardiologia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2038BD"
-            android:text="Especialista"
-            android:textColor="#FFFFFF"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Cardiología"
+            android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/Examenes"
+            android:id="@+id/btnFisioterapia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2038BD"
-            android:text="Exámenes de laboratorio"
-            android:textColor="#FFFFFF"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Fisioterapia"
+            android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/Terapeuta"
+            android:id="@+id/btnFonoaudiologia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#2038BD"
-            android:text="Terapias y rehabilitación"
-            android:textColor="#FFFFFF"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Fonoaudiología"
+            android:textColor="#FFFFFF" />
 
+        <Button
+            android:id="@+id/btnGinecologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:onClick="onClick"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Ginecología"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnOdontologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Odontología"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnOftalmologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Oftalmología"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnOncologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Oncología"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnTraumatologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#03A9F4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Traumatología"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 </FrameLayout>

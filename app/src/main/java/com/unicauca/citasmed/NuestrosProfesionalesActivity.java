@@ -32,10 +32,8 @@ import citasmed.R;
 
 
 public class NuestrosProfesionalesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private List<Profesional> listaProfesionales;
-    private ArrayList<Profesional> listaMedGeneral;
     private RecyclerView recyclerProfesionales;
-    public LinearLayout opcion;
+    public LinearLayout opcion;                  //Es el Layout que se muestra al seleccionar un item del Spinner
     private DatabaseReference myRef;
 
     @Override
