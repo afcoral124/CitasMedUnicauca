@@ -31,10 +31,10 @@ import citasmed.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentProfesionales#newInstance} factory method to
+ * Use the {@link FragmentMedGeneral#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentProfesionales extends Fragment {
+public class FragmentMedGeneral extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,7 +49,7 @@ public class FragmentProfesionales extends Fragment {
     public LinearLayout opcion;                  //Es el Layout que se muestra al seleccionar un item del Spinner
     private DatabaseReference myRef;
 
-    public FragmentProfesionales() {
+    public FragmentMedGeneral() {
         // Required empty public constructor
     }
 
@@ -62,8 +62,8 @@ public class FragmentProfesionales extends Fragment {
      * @return A new instance of fragment FragmentMusica.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentProfesionales newInstance(String param1, String param2) {
-        FragmentProfesionales fragment = new FragmentProfesionales();
+    public static FragmentMedGeneral newInstance(String param1, String param2) {
+        FragmentMedGeneral fragment = new FragmentMedGeneral();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -86,7 +86,7 @@ public class FragmentProfesionales extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View vista = inflater.inflate(R.layout.fragment_profesionales, container, false);
+        View vista = inflater.inflate(R.layout.fragment_medicos_generales, container, false);
         recyclerProfesionales= (RecyclerView) vista.findViewById(R.id.recyclerMedGeneral);
         mostrarListaProfesionales(vista);
         return vista;

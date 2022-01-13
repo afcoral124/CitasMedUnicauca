@@ -1,40 +1,22 @@
 package com.unicauca.citasmed;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import android.os.Bundle;
 import android.view.View;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.unicauca.citasmed.adapter.AdaptadorProfesionales;
-import com.unicauca.citasmed.modelo.Profesional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import citasmed.R;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     FragmentCategorias fragCategorias;
-    FragmentProfesionales fragProfesionales;
+
 
 
 
@@ -65,12 +47,44 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //Cuando se presiona una de las categorías, o el botón Atrás
     public void onClick(View view) {
-        fragProfesionales = new FragmentProfesionales();
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (view.getId()){
             case R.id.MedicoGeneral:
-                System.out.println("Hasta aquí va bien");
-                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragProfesionales).addToBackStack(null);
+                FragmentMedGeneral fragMed = new FragmentMedGeneral();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragMed).addToBackStack(null);
+                break;
+            case R.id.btnCardiologia:
+                FragmentCardiologia fragCard = new FragmentCardiologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragCard).addToBackStack(null);
+                break;
+            case R.id.btnFisioterapia:
+                FragmentFisioterapia fragFis = new FragmentFisioterapia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragFis).addToBackStack(null);
+                break;
+            case R.id.btnFonoaudiologia:
+                FragmentFonoaudiologia fragFon = new FragmentFonoaudiologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragFon).addToBackStack(null);
+                break;
+            case R.id.btnGinecologia:
+                FragmentGinecologia fragGin = new FragmentGinecologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragGin).addToBackStack(null);
+                break;
+            case R.id.btnOdontologia:
+                FragmentOdontologia fragOdo = new FragmentOdontologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragOdo).addToBackStack(null);
+                break;
+            case R.id.btnOftalmologia:
+                FragmentOftalmologia fragOft = new FragmentOftalmologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragOft).addToBackStack(null);
+                break;
+            case R.id.btnOncologia:
+                FragmentOncologia fragOnc = new FragmentOncologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragOnc).addToBackStack(null);
+                break;
+            case R.id.btnTraumatologia:
+                FragmentTraumatologia fragTra = new FragmentTraumatologia();
+                transaction = getSupportFragmentManager().beginTransaction().replace(R.id.contenedorFragmentos, fragTra).addToBackStack(null);
                 break;
             case R.id.cardAtras:
                 onBackPressed();
