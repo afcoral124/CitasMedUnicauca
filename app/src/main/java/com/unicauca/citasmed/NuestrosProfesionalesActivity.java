@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
@@ -35,7 +36,7 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
     private ArrayList<Profesional> listaMedGeneral;
     private RecyclerView recyclerProfesionales;
     public LinearLayout opcion;
-
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,6 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_nuestros_profesionales);
 
         llenarSpinner();
-
-        generarProfesionalesMedicinaGeneral();
 
     }
 
@@ -97,178 +96,116 @@ public class NuestrosProfesionalesActivity extends AppCompatActivity implements 
         // An item was selected. You can retrieve the selected item using
         //System.out.println(parent.getItemAtPosition(pos));
         ocultarOpciones();
+        double eleccion;
 
         switch (String.valueOf(parent.getItemAtPosition(pos))){
             case "Med.General":
                 opcion = findViewById(R.id.LyMed_General);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerMedGeneral);
+                eleccion=0;
                 break;
             case "Cardiología":
                 opcion = findViewById(R.id.LyCardiologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerCardiologia);
+                eleccion=1;
                 break;
             case "Fisioterapia":
                 opcion = findViewById(R.id.LyFisioterapia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerFisioterapia);
+                eleccion=2;
                 break;
             case "Fonoaudiología":
                 opcion = findViewById(R.id.LyFonoaudiologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerFonoaudiologia);
+                eleccion=3;
                 break;
             case "Ginecología":
                 opcion = findViewById(R.id.LyGinecologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerGinecologia);
+                eleccion=4;
                 break;
             case "Odontología":
                 opcion = findViewById(R.id.LyOdontologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerOdontologia);
+                eleccion=5;
                 break;
             case "Oftalmología":
                 opcion = findViewById(R.id.LyOftalmologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerOftalmologia);
+                eleccion=6;
                 break;
             case "Oncología":
                 opcion = findViewById(R.id.LyOncologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerOncologia);
+                eleccion=7;
                 break;
             case "Traumatología":
                 opcion = findViewById(R.id.LyTraumatologia);
                 opcion.setVisibility(View.VISIBLE);
+                recyclerProfesionales = findViewById(R.id.recyclerTraumatologia);
+                eleccion=8;
                 break;
 
             default:
                 Log.d("Total", String.valueOf(parent.getItemAtPosition(pos)));
+                eleccion=9;
+                recyclerProfesionales = findViewById(R.id.recyclerMedGeneral);
                 break;
         }
+        generarProfesionales(eleccion);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
-    private void generarProfesionalesMedicinaGeneral(){
+    //Lectura en la DB
+    private void generarProfesionales(double eleccion){
         //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        listaMedGeneral = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerMedGeneral);
+        System.out.println(eleccion);
+
+
         recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
 
-        //Escritura en la DB
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://citasmeddb-default-rtdb.firebaseio.com/");
-        DatabaseReference myRef = database.getReference("Profesionales"); //clave
-        //myRef.setValue("hola"); //valor
-
-        //Lectura en la DB
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef = FirebaseDatabase.getInstance().getReference(); //referencia al nodo principal
+        Query q = myRef.child("Profesionales").orderByChild("id_profesion").equalTo(eleccion);
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                GenericTypeIndicator<ArrayList<Profesional>> t = new GenericTypeIndicator<ArrayList<Profesional>>() {};
-                ArrayList<Profesional> value = dataSnapshot.getValue(t);
-                for (int i=0; i<value.size();i++){
-                    if (value.get(i).getId_profesion()==0){
-                        listaProfesionales.add(value.get(i));
-                        System.out.println(i + " "+listaProfesionales.get(i).getNombre()+" hola");
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                   /* GenericTypeIndicator<ArrayList<Profesional>> t = new GenericTypeIndicator<ArrayList<Profesional>>() {};
+                    ArrayList<Profesional> value = snapshot.getValue(t);
+                    System.out.println(" valor "+value.get(0).getNombre());*/
+                    List<Profesional> value = new ArrayList<>();
+                    for(DataSnapshot ds : snapshot.getChildren()) {
+                        Profesional persona = ds.getValue(Profesional.class);
+                        value.add(persona);
                     }
-
+                    AdaptadorProfesionales adaptador = new AdaptadorProfesionales(value);
+                    recyclerProfesionales.setAdapter(adaptador);
                 }
-
-                System.out.println("Tamaño vector: "+listaProfesionales.size());
-                //---------------------------------------------------------------------------
-                System.out.println("Tamaño vector: "+listaProfesionales.size());
-                AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-                recyclerProfesionales.setAdapter(adaptador);
             }
+
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, error.getMessage()); //Don't ignore errors!
             }
         });
 
 
+        //Escritura en la DB
+       // FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // DatabaseReference myRef = database.getReference("Profesionales"); //clave
+        //myRef.setValue("hola"); //valor
+
         //---------------------------------------------------------------------------
-        System.out.println("Tamaño vector: "+listaProfesionales.size());
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-
-    private void generarProfesionalesCardiologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerCardiologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesFisioterapia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerFisioterapia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesFonoaudiologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerFonoaudiologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesGinecologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerGinecologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesOdontologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerOdontologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesOftalmologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerOftalmologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesOncologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerOncologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
-    }
-    private void generarProfesionalesTraumatologia(){
-        //Arreglo de profesionales
-        listaProfesionales = new ArrayList<>();
-        recyclerProfesionales = findViewById(R.id.recyclerTraumatologia);
-        recyclerProfesionales.setLayoutManager(new LinearLayoutManager(this));
-
-        AdaptadorProfesionales adaptador = new AdaptadorProfesionales(listaProfesionales);
-        recyclerProfesionales.setAdapter(adaptador);
     }
 }
