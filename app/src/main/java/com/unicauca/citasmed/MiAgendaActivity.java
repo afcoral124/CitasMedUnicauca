@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,8 @@ public class MiAgendaActivity extends AppCompatActivity {
     private int id_paciente;
     private DbUsuarios dbUsuarios;
     private Paciente paciente;
+    private TextView tvNombrePaciente;
+    private TextView tvIdentificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,10 @@ public class MiAgendaActivity extends AppCompatActivity {
         //si el paciente está logueado:
         if(paciente != null){
             setContentView(R.layout.activity_mi_agenda);
+            tvNombrePaciente = findViewById(R.id.tvNombrePaciente);
+            tvIdentificacion = findViewById(R.id.tvIdentificacionPaciente);
+            tvNombrePaciente.setText(paciente.getNombre());
+            tvIdentificacion.setText("Identificación: "+paciente.getId_paciente());
             id_paciente=paciente.getId_paciente(); //por ahora
             recyclerCitas = findViewById(R.id.RecyclerCitas);
             recyclerCitas.setLayoutManager(new LinearLayoutManager(this));

@@ -91,29 +91,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.misCitas:
-                Log.d("opcion 1", "seleccionada opcion 1");
                 abrirActividad(MiAgendaActivity.class);
                 break;
             case R.id.agendarCita:
-                Log.d("opcion 2", "seleccionada opcion 2");
                 abrirActividad(MainActivity.class);
                 break;
             case R.id.categoriaServicios:
-                Log.d("opcion 3", "seleccionada opcion 3");
                 abrirActividad(NuestrosProfesionalesActivity.class);
                 break;
             case R.id.acercaDe:
-                Log.d("opcion 3", "seleccionada opcion 3");
+                abrirActividad(MasInformacionActivity.class);
                 break;
             case R.id.sobreNosotros:
-                Log.d("opcion 3", "seleccionada opcion 3");
                 abrirActividad(SobreNosotrosActivity.class);
                 break;
             case R.id.appMovil:
-                Log.d("opcion 3", "seleccionada opcion 3");
+                abrirActividad(SobreNosotrosActivity.class);
                 break;
             case R.id.cerrarSesion:
-                Log.d("opcion 3", "Borrados los datos de la tabla");
                 dbUsuarios.borrarDatos();
                 tvNombreUsuarioNav.setText("Nombre");
                 tvUsernameUsuarioNav.setText("Username");
@@ -130,6 +125,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void abrirAgendarCitas(View view){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void abrirMasInformacion(View view){
+        Intent intent = new Intent(this, MasInformacionActivity.class);
         startActivity(intent);
     }
     public void abrirNuestrosProfesionales(View view){
