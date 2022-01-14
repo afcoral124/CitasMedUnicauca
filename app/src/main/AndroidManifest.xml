@@ -8,8 +8,11 @@
         android:label="CitasMed"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
+        >
         <activity android:name="com.unicauca.citasmed.HomeActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,18 +22,30 @@
         </activity>
 
         <activity android:name="com.unicauca.citasmed.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName="com.unicauca.citasmed.HomeActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.unicauca.citasmed.HomeActivity" />
         </activity>
+
         <activity android:name="com.unicauca.citasmed.NuestrosProfesionalesActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName="com.unicauca.citasmed.HomeActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.unicauca.citasmed.HomeActivity" />
+        </activity>
+
+        <activity android:name="com.unicauca.citasmed.AgendarCitaActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:parentActivityName="com.unicauca.citasmed.MainActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.unicauca.citasmed.MainActivity" />
         </activity>
     </application>
 

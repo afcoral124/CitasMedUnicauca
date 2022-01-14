@@ -14,9 +14,10 @@ import com.unicauca.citasmed.modelo.Profesional;
 import citasmed.R;
 
 
-public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfesionales.ViewHolderProfesionales> {
+public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfesionales.ViewHolderProfesionales> implements View.OnClickListener {
 
     private List<Profesional> listaProfesionales;
+    private View.OnClickListener listener;
 
     public AdaptadorProfesionales(List<Profesional> listaProfesionales) {
         this.listaProfesionales = listaProfesionales;
@@ -32,6 +33,9 @@ public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfes
     @Override
     public AdaptadorProfesionales.ViewHolderProfesionales onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_profesionales, null, false);
+
+        view.setOnClickListener(this);
+
         return new ViewHolderProfesionales(view);
     }
 
@@ -45,6 +49,17 @@ public class AdaptadorProfesionales extends RecyclerView.Adapter<AdaptadorProfes
     @Override
     public int getItemCount() {
         return getListaProfesionales().size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener!=null){
+            listener.onClick(view);
+        }
     }
 
     public class ViewHolderProfesionales extends RecyclerView.ViewHolder{

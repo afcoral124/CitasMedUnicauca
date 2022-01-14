@@ -2,6 +2,7 @@ package com.unicauca.citasmed;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +52,7 @@ public class FragmentMedGeneral extends Fragment implements AdapterView.OnItemSe
     private String mParam2;
     private String ciudad;
     private View vista;
+    public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
 
     private RecyclerView recyclerProfesionales;
     public LinearLayout opcion;                  //Es el Layout que se muestra al seleccionar un item del Spinner
@@ -158,6 +162,21 @@ public class FragmentMedGeneral extends Fragment implements AdapterView.OnItemSe
                         }
                     }
                     AdaptadorProfesionales adaptador = new AdaptadorProfesionales(value);
+                    adaptador.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(getContext(), "Seleccion: "+value.get
+                                    (recyclerProfesionales.getChildAdapterPosition(view)).getNombre(),
+                                    Toast.LENGTH_SHORT).show();
+
+                            //Llamar a la actividad de agendar cita, con un intent que nos guarde
+                            //la información del medico seleccionado
+                            Intent intent = new Intent(getContext(), AgendarCitaActivity.class);
+                            String message = String.valueOf(value.get(recyclerProfesionales.getChildAdapterPosition(view)).getId_profesional());
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            startActivity(intent);
+                        }
+                    });
                     recyclerProfesionales.setAdapter(adaptador);
                 }
             }
