@@ -2,13 +2,11 @@ package com.unicauca.citasmed.adapter;
 
 import static android.content.ContentValues.TAG;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,13 +17,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.unicauca.citasmed.AgendarCitaActivity;
 import com.unicauca.citasmed.modelo.Cita;
 import com.unicauca.citasmed.modelo.Profesional;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.LogRecord;
+import android.os.Handler;
 import citasmed.R;
 
 
@@ -36,6 +34,7 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
     private DatabaseReference myRef;
     private Profesional p;
     private String profesion;
+    public Handler handler;
 
     public AdaptadorCitas(List<Cita> listaCitas) {
         this.listaCitas = listaCitas;
@@ -59,6 +58,7 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull AdaptadorCitas.ViewHolderCitas holder, int position) {
+
         //Obtengo la cita actual (itera según la posición que dibuja el recyclerview)
         Cita c = listaCitas.get(position);
 
@@ -80,6 +80,65 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
                         System.out.println(p.getNombre());
                         holder.tvProfesional.setText(p.getNombre());
                         holder.tvCiudad.setText(p.getCiudad());
+                        switch (p.getId_profesion()){
+                            case 0:
+                                holder.tvProfesion.setText("Medicina General");
+                                break;
+                            case 1:
+                                holder.tvProfesion.setText("Cardiología");
+                                break;
+                            case 2:
+                                holder.tvProfesion.setText("Fisioterapia");
+                                break;
+                            case 3:
+                                holder.tvProfesion.setText("Fonoaudiología");
+                                break;
+                            case 4:
+                                holder.tvProfesion.setText("Ginecología");
+                                break;
+                            case 5:
+                                holder.tvProfesion.setText("Odontología");
+                                break;
+                            case 6:
+                                holder.tvProfesion.setText("Oftalmología");
+                                break;
+                            case 7:
+                                holder.tvProfesion.setText("Oncología");
+                                break;
+                            case 8:
+                                holder.tvProfesion.setText("Traumatología");
+                                break;
+                        }
+
+
+                       /*
+                       //Consulta 2: profesion del profesional de la cita actual
+                        Query q2 =  myRef.child("Profesiones");
+                        q2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    List<String> value2 = new ArrayList<>();
+                                    for(DataSnapshot ds : snapshot.getChildren()) {
+                                        String profesion = ds.getValue(String.class);
+                                        value2.add(profesion);
+                                    }
+                                    //Grafico el dato de profesión
+                                    profesion=value2.get(p.getId_profesion());
+                                    System.out.println("profesion es: "+profesion);
+                                    holder.tvProfesion.setText(profesion);
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.d(TAG, error.getMessage()); //Don't ignore errors!
+                            }
+                        });*/
+
+
+
+
+
                     }
                 }
             }
@@ -88,36 +147,14 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
                 Log.d(TAG, error.getMessage()); //Don't ignore errors!
             }
         });
-        //Grafico los datos del profesional
 
 
-        //Consulta 2: profesion del profesional de la cita actual
-        Query q2 =  myRef.child("Profesiones");
-        q2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    List<String> value2 = new ArrayList<>();
-                    for(DataSnapshot ds : snapshot.getChildren()) {
-                        String profesion = ds.getValue(String.class);
-                        value2.add(profesion);
-                    }
-                    //Grafico el dato de profesión
-                    profesion=value2.get(p.getId_profesion());
-                    System.out.println("profesion es: "+profesion);
-                    holder.tvProfesion.setText(profesion);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, error.getMessage()); //Don't ignore errors!
-            }
-        });
 
 
         //Grafico los datos de fecha y hora que sí dependen del objeto cita
         holder.tvFecha.setText(c.getFecha());
         holder.tvHora.setText(c.getHora());
+
 
 
     }

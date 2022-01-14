@@ -12,7 +12,7 @@
             android:icon="@drawable/ic_attach_file"
             android:id="@+id/categoriaServicios"></item>
 
-        <item android:title="Acerca De(Tutorial de la app)"
+        <item android:title="Preguntas Frecuentes"
             android:icon="@drawable/ic_attach_file"
             android:id="@+id/acercaDe"></item>
 

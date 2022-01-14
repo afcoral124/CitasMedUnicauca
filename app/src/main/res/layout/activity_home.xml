@@ -302,6 +302,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     app:cardCornerRadius="20dp"
+                    android:onClick="abrirMasInformacion"
                     app:cardElevation="6dp"
                     >
                     <androidx.gridlayout.widget.GridLayout
