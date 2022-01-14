@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.unicauca.citasmed.db.DbHelper;
+import com.unicauca.citasmed.db.DbUsuarios;
+import com.unicauca.citasmed.modelo.Paciente;
 import com.unicauca.citasmed.modelo.Profesional;
 
 import java.util.ArrayList;
@@ -32,6 +36,8 @@ import citasmed.R;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private DbUsuarios dbUsuarios;
+    private Paciente paciente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Creando la base de datos local
+        DbHelper dbHelper = new DbHelper(HomeActivity.this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        dbUsuarios = new DbUsuarios(HomeActivity.this);
+        if (db != null){
+            Toast.makeText(HomeActivity.this, "Leyendo Base de datos  ", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(HomeActivity.this, "Error al crear la base de datos ", Toast.LENGTH_LONG).show();
+        }
+        paciente = dbUsuarios.LeerUsuarios();
+        if (paciente != null){
+            Toast.makeText(HomeActivity.this, "paciente logueado " + paciente.getNombre(), Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(HomeActivity.this, "No hay paciente logueado ", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -76,7 +97,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Log.d("opcion 3", "seleccionada opcion 3");
                 break;
             case R.id.cerrarSesion:
-                Log.d("opcion 3", "seleccionada opcion 3");
+                Log.d("opcion 3", "Borrados los datos de la tabla");
+                dbUsuarios.borrarDatos();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

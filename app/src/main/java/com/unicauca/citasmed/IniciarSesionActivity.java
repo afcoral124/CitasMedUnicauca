@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.unicauca.citasmed.db.DbUsuarios;
 import com.unicauca.citasmed.modelo.Paciente;
 
 import citasmed.R;
@@ -113,6 +114,15 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
 
                         if (paciente.getPassword().equals(etPassword.getText().toString())) {
                             Toast.makeText(IniciarSesionActivity.this, "Nombre: "+paciente.getNombre(), Toast.LENGTH_LONG).show();
+                            //Guardar paciente en la DB local
+                            DbUsuarios dbUsuarios = new DbUsuarios(IniciarSesionActivity.this);
+                            long id = dbUsuarios.InsertarUsuario(paciente.getId_paciente(), paciente.getNombre(),
+                                    paciente.getUsuario(), paciente.getCorreo(), paciente.getPassword());
+                            if (id > 0){
+                                Toast.makeText(IniciarSesionActivity.this, "Registro Guardado ", Toast.LENGTH_LONG).show();
+                            }else {
+                                Toast.makeText(IniciarSesionActivity.this, "Registro No Guardado ", Toast.LENGTH_LONG).show();
+                            }
 
                         } else {
                             Toast.makeText(IniciarSesionActivity.this, "Password is wrong", Toast.LENGTH_LONG).show();
