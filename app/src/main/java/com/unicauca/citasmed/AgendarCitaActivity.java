@@ -301,13 +301,15 @@ public class AgendarCitaActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    List<Cita> value = new ArrayList<>();
+                    id_cita = (int) snapshot.getChildrenCount();
+                    /*List<Cita> value = new ArrayList<>();
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         Cita cita = ds.getValue(Cita.class);
                         System.out.println(cita.getId_cita());
                         value.add(cita);
                     }
-                    id_cita = value.size();
+                    */
+                    System.out.printf(" el numero de nodos es "+id_cita);
                     crearCitaNueva();
                 }
             }
@@ -343,7 +345,7 @@ public class AgendarCitaActivity extends AppCompatActivity {
 
             //Escritura en la DB
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef2 = database.getReference("Citas"); //clave
+            DatabaseReference myRef2 = database.getReference("Citas").child(String.valueOf(id_cita)); //clave
             myRef2.setValue(citaAgendada); //valor
 
             //DatabaseReference usersRef = database.child("Citas");
