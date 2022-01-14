@@ -292,6 +292,7 @@
                     android:layout_margin="20dp"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="6dp"
+                    android:onClick="abrirSobreNosotros"
                     >
                     <androidx.gridlayout.widget.GridLayout
                         android:layout_width="match_parent"
@@ -324,9 +325,6 @@
                                 android:fontFamily="sans-serif"
                                 android:text="¿Cómo me afilio?, Sin suscripciones, ¡Úsalo cuando lo necesites"
                                 android:textSize="24sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
                                 tools:ignore="MissingConstraints" />
                         </LinearLayout>
                         <TextView

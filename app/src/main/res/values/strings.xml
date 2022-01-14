@@ -22,4 +22,11 @@
         <item>Oncología</item>
         <item>Traumatología</item>
     </string-array>
+    <string name="descripcionApp">
+        El objetivo del aplicativo es facilitar a los usuarios el agendamiento de citas para servicios de salud. Con esta aplicación los usuarios podrán  consultar una lista de profesionales de la salud de acuerdo a su necesidad (médico general o especialista), y agendar una cita de acuerdo a los horarios disponibles
+    </string>
+
+    <string name="quienesSomos">
+        App desarrollada por los estudiantes de Ingeniería Electrónica y Telecomunicaciones:
+    </string>
 </resources>
