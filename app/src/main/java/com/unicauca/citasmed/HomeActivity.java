@@ -69,18 +69,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbUsuarios = new DbUsuarios(HomeActivity.this);
         if (db != null){
-            Toast.makeText(HomeActivity.this, "Leyendo Base de datos  ", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomeActivity.this, "Leyendo Base de datos  ", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(HomeActivity.this, "Error al crear la base de datos ", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomeActivity.this, "Error al crear la base de datos ", Toast.LENGTH_SHORT).show();
         }
         paciente = dbUsuarios.LeerUsuarios();
         if (paciente != null){
+
             tvNombreUsuarioNav.setText(paciente.getNombre());
             tvUsernameUsuarioNav.setText(paciente.getUsuario());
             cvBotonIniciarSesion.setVisibility(View.GONE);
 
         }else {
-            Toast.makeText(HomeActivity.this, "No hay paciente logueado ", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomeActivity.this, "No hay paciente logueado ", Toast.LENGTH_SHORT).show();
         }
         toggle.syncState();
     }
@@ -91,6 +92,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.misCitas:
                 Log.d("opcion 1", "seleccionada opcion 1");
+                abrirActividad(MiAgendaActivity.class);
                 break;
             case R.id.agendarCita:
                 Log.d("opcion 2", "seleccionada opcion 2");
@@ -121,7 +123,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    public void abrirMiAgenda(View view){
+        Intent intent = new Intent(this, MiAgendaActivity.class);
+        startActivity(intent);
+    }
 
     public void abrirAgendarCitas(View view){
         Intent intent = new Intent(this, MainActivity.class);
@@ -133,7 +138,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void abrirActividad(Class clase){
-
         Intent newAct = new Intent(getApplicationContext(), clase);
         startActivity(newAct);
     }
