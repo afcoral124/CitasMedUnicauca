@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +31,9 @@ import com.unicauca.citasmed.modelo.Profesional;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import citasmed.R;
 
@@ -38,6 +41,9 @@ public class AgendarCitaActivity extends AppCompatActivity {
     private TextView tvFechaDato;
     private int id_profesion;
     private int id_profesional;
+    private int id_cita;
+    private int estadoCita;
+    private int id_paciente;
     private String horaSeleccionada="";
 
     private TextView tvProfesionProfesional;
@@ -66,6 +72,8 @@ public class AgendarCitaActivity extends AppCompatActivity {
 
         //Conexión a la base de datos
         myRef = FirebaseDatabase.getInstance().getReference(); //referencia al nodo principal
+
+
 
         //Recibimos el dato del médico seleccionado del intent
         Intent intent = getIntent();
@@ -171,6 +179,8 @@ public class AgendarCitaActivity extends AppCompatActivity {
         btn10am.setVisibility(View.VISIBLE);
         btn3pm.setVisibility(View.VISIBLE);
         btn4pm.setVisibility(View.VISIBLE);
+
+        relativeAgendar.setVisibility(View.INVISIBLE);
     }
 
     private void consultarAgendaProfesional() {
@@ -244,20 +254,119 @@ public class AgendarCitaActivity extends AppCompatActivity {
                 Log.d(TAG, error.getMessage()); //Don't ignore errors!
             }
         });
-
-
-        //Si no hay citas ya programadas entonces todos los botones se hacen visibles
-
-        //Si hay alguna cita ya programada, entonces esa hora ya no se muestra, el resto sí
-
-
     }
 
 
     public void seleccionarHora(View view) {
+        tv9am.setBackgroundColor(Color.parseColor("#03A9F4"));//azul
+        tv10am.setBackgroundColor(Color.parseColor("#03A9F4"));//azul
+        tv3pm.setBackgroundColor(Color.parseColor("#03A9F4"));//azul
+        tv4pm.setBackgroundColor(Color.parseColor("#03A9F4"));//azul
+
+        switch (view.getId()) {
+            case R.id.btn9am:
+                horaSeleccionada = (String) tv9am.getText();
+                tv9am.setBackgroundColor(Color.parseColor("#4CAF50"));//verde
+                break;
+            case R.id.btn10am:
+                horaSeleccionada = (String) tv10am.getText();
+                tv10am.setBackgroundColor(Color.parseColor("#4CAF50"));//verde
+                break;
+            case R.id.btn3pm:
+                horaSeleccionada = (String) tv3pm.getText();
+                tv3pm.setBackgroundColor(Color.parseColor("#4CAF50"));//verde
+                break;
+            case R.id.btn4pm:
+                horaSeleccionada = (String) tv4pm.getText();
+                tv4pm.setBackgroundColor(Color.parseColor("#4CAF50"));//verde
+                break;
+        }
+        System.out.println("Se seleccionó la hora: "+ horaSeleccionada);
+        relativeAgendar.setVisibility(View.VISIBLE);
     }
 
+    public void agendarCita(View view) {
+        //Se deben capturar todos los datos de una cita, para crear un objeto Cita con estos datos
 
+        //id_cita----------------------------------------------
+        //se busca en la base de datos cual es la cita con mayor id, y se le pone a esta el valor siguiente
+        //Consulta: numero mayor de id en las citas
+        Query q = myRef.child("Citas");
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    List<Cita> value = new ArrayList<>();
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        Cita cita = ds.getValue(Cita.class);
+                        System.out.println(cita.getId_cita());
+                        value.add(cita);
+                    }
+                    id_cita = value.size();
+                    crearCitaNueva();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, error.getMessage()); //Don't ignore errors!
+            }
+        });
+
+    }
+
+    public void crearCitaNueva(){
+        //fecha-----------------------------------
+        //Es la fecha seleccionada en el calendario
+        String fechaCita = (String) tvFechaDato.getText();
+
+        //hora: listo :)------------------------------------
+        //Es la hora que ya se obtuvo del botón en verde: variable-> horaSeleccionada
+
+        //estado-------------------------------------------
+        //Es una cita pendiente, será 1
+        estadoCita= 1;
+
+        //id_profesional: listo :)--------------------------
+        //El id del médico que atiende, ya se obtuvo: id_profesional
+
+        //id_paciente---------------------------------------
+        //Es el id del paciente logueado, se puede consultar en SQLite (pues se guardaron los datos del user logueado)
+
+        //consultar en SQLite el id del paciente
+
+        if(true){ //Si está logueado o si hay datos en SQLite
+            //id_paciente= lo que haya en SQLite;
+
+            id_paciente=1; //por ahora
+
+            //esta Cita se envía a la base de datos para que quede almacenada
+            Cita citaAgendada = new Cita(id_cita, fechaCita, horaSeleccionada, estadoCita, id_profesional, id_paciente);
+            System.out.println("Se va a agendar la cita con los valores: ");
+            System.out.println("id_cita: "+citaAgendada.getId_cita());
+            System.out.println("fecha: "+citaAgendada.getFecha());
+            System.out.println("hora: "+citaAgendada.getHora());
+            System.out.println("estado: "+citaAgendada.getEstado());
+            System.out.println("id_profesional: "+citaAgendada.getId_profesional());
+            System.out.println("id_paciente: "+citaAgendada.getId_paciente());
+
+            //Escritura en la DB
+            //FirebaseDatabase database = FirebaseDatabase.getInstance();
+            //DatabaseReference myRef2 = database.getReference("Citas"); //clave
+            //myRef2.child().setValue(Cita); //valor
+
+            //DatabaseReference usersRef = database.child("Citas");
+            //Map<String, Cita> users = new HashMap<>();
+            //users.put("alanisawesome", user1);
+            //usersRef.setValueAsync(users);
+
+            //y se redirige al usuario al home activity con un Toast de "Cita agendada correctamente"
+
+        }else{
+            //Si no está logueado, entonces se redirige a interfaz iniciar sesión y la Cita no se manda a la base de datos
+
+        }
+    }
 
 
 

@@ -2,6 +2,7 @@ package com.unicauca.citasmed;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -48,6 +50,7 @@ public class FragmentOdontologia extends Fragment implements AdapterView.OnItemS
     private String mParam2;
     private String ciudad;
     private View vista;
+    public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
 
     private RecyclerView recyclerProfesionales;
     public LinearLayout opcion;                  //Es el Layout que se muestra al seleccionar un item del Spinner
@@ -158,6 +161,21 @@ public class FragmentOdontologia extends Fragment implements AdapterView.OnItemS
                         }
                     }
                     AdaptadorProfesionales adaptador = new AdaptadorProfesionales(value);
+                    adaptador.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(getContext(), "Seleccion: "+value.get
+                                            (recyclerProfesionales.getChildAdapterPosition(view)).getNombre(),
+                                    Toast.LENGTH_SHORT).show();
+
+                            //Llamar a la actividad de agendar cita, con un intent que nos guarde
+                            //la información del medico seleccionado
+                            Intent intent = new Intent(getContext(), AgendarCitaActivity.class);
+                            String message = String.valueOf(value.get(recyclerProfesionales.getChildAdapterPosition(view)).getId_profesional());
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            startActivity(intent);
+                        }
+                    });
                     recyclerProfesionales.setAdapter(adaptador);
                 }
             }

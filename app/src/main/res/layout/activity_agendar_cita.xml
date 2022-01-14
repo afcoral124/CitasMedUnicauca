@@ -360,7 +360,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
-                    android:onClick="seleccionarHora"
+                    android:onClick="agendarCita"
                     app:cardElevation="5dp"
                     app:cardCornerRadius="10dp">
                     <TextView
