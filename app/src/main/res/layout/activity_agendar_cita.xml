@@ -226,23 +226,24 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvTituloHora"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textAlignment="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="sans-serif"
-                android:text="Seleccione una hora"
-                android:textSize="20sp" />
+
 
             <LinearLayout
                 android:id="@+id/lyHoras"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvTituloHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Seleccione una hora"
+                    android:textSize="20sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -263,6 +264,7 @@
                         app:cardElevation="5dp"
                         app:cardCornerRadius="10dp">
                         <TextView
+                            android:id="@+id/tv9am"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#03A9F4"
@@ -277,10 +279,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:onClick="abrirCalendario"
+                        android:onClick="seleccionarHora"
                         app:cardElevation="5dp"
                         app:cardCornerRadius="10dp">
                         <TextView
+                            android:id="@+id/tv10am"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#03A9F4"
@@ -314,6 +317,7 @@
                         app:cardElevation="5dp"
                         app:cardCornerRadius="10dp">
                         <TextView
+                            android:id="@+id/tv3pm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#03A9F4"
@@ -332,6 +336,7 @@
                         app:cardElevation="5dp"
                         app:cardCornerRadius="10dp">
                         <TextView
+                            android:id="@+id/tv4pm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#03A9F4"
