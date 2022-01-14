@@ -123,7 +123,8 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
                             }else {
                                 Toast.makeText(IniciarSesionActivity.this, "Registro No Guardado ", Toast.LENGTH_LONG).show();
                             }
-
+                            Intent intent = new Intent(IniciarSesionActivity.this, HomeActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(IniciarSesionActivity.this, "Password is wrong", Toast.LENGTH_LONG).show();
                         }
@@ -146,6 +147,10 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

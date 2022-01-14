@@ -6,15 +6,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +41,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private DbUsuarios dbUsuarios;
     private Paciente paciente;
+    private TextView tvNombreUsuarioNav;
+    private TextView tvUsernameUsuarioNav;
+    private CardView cvBotonIniciarSesion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +56,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(this);
+        View navHeader = navigationView.getHeaderView(0);
+        tvNombreUsuarioNav = navHeader.findViewById(R.id.tvNombreUsuarioNav);
+        tvUsernameUsuarioNav = navHeader.findViewById(R.id.tvUsernameUsuarioNav);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.musicatxt, R.string.musicatxt);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
+        cvBotonIniciarSesion = findViewById(R.id.cvBotonIniciarSesion);
         //Creando la base de datos local
         DbHelper dbHelper = new DbHelper(HomeActivity.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -65,11 +75,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         paciente = dbUsuarios.LeerUsuarios();
         if (paciente != null){
-            Toast.makeText(HomeActivity.this, "paciente logueado " + paciente.getNombre(), Toast.LENGTH_LONG).show();
+            tvNombreUsuarioNav.setText(paciente.getNombre());
+            tvUsernameUsuarioNav.setText(paciente.getUsuario());
+            cvBotonIniciarSesion.setVisibility(View.GONE);
+
         }else {
             Toast.makeText(HomeActivity.this, "No hay paciente logueado ", Toast.LENGTH_LONG).show();
         }
-
+        toggle.syncState();
     }
 
 
@@ -92,6 +105,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.sobreNosotros:
                 Log.d("opcion 3", "seleccionada opcion 3");
+                abrirActividad(SobreNosotrosActivity.class);
                 break;
             case R.id.appMovil:
                 Log.d("opcion 3", "seleccionada opcion 3");
@@ -99,6 +113,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.cerrarSesion:
                 Log.d("opcion 3", "Borrados los datos de la tabla");
                 dbUsuarios.borrarDatos();
+                tvNombreUsuarioNav.setText("Nombre");
+                tvUsernameUsuarioNav.setText("Username");
+                cvBotonIniciarSesion.setVisibility(View.VISIBLE);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -126,7 +143,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            finishAffinity();
+            //super.onBackPressed();
         }
     }
 
@@ -134,4 +152,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, IniciarSesionActivity.class);
         startActivity(intent);
     }
+
 }
