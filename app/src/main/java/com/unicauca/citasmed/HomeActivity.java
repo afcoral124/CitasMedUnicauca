@@ -107,4 +107,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+    public void abrirIniciarSesionActivity(View view){
+        Intent intent = new Intent(this, IniciarSesionActivity.class);
+        startActivity(intent);
+    }
 }
