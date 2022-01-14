@@ -65,6 +65,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.unicauca.citasmed.HomeActivity" />
         </activity>
+        <activity android:name="com.unicauca.citasmed.MiAgendaActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:parentActivityName="com.unicauca.citasmed.HomeActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.unicauca.citasmed.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

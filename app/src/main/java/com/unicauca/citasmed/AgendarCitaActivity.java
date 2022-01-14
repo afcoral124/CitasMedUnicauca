@@ -25,7 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.unicauca.citasmed.adapter.AdaptadorProfesionales;
+import com.unicauca.citasmed.db.DbUsuarios;
 import com.unicauca.citasmed.modelo.Cita;
+import com.unicauca.citasmed.modelo.Paciente;
 import com.unicauca.citasmed.modelo.Profesional;
 
 import java.sql.SQLOutput;
@@ -64,6 +66,8 @@ public class AgendarCitaActivity extends AppCompatActivity {
     private TextView tv3pm;
     private TextView tv4pm;
 
+    private DbUsuarios dbUsuarios;
+    private Paciente paciente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,8 @@ public class AgendarCitaActivity extends AppCompatActivity {
         //Conexión a la base de datos
         myRef = FirebaseDatabase.getInstance().getReference(); //referencia al nodo principal
 
-
+        dbUsuarios = new DbUsuarios(AgendarCitaActivity.this);
+        paciente = dbUsuarios.LeerUsuarios();
 
         //Recibimos el dato del médico seleccionado del intent
         Intent intent = getIntent();
@@ -316,30 +321,16 @@ public class AgendarCitaActivity extends AppCompatActivity {
     }
 
     public void crearCitaNueva(){
-        //fecha-----------------------------------
-        //Es la fecha seleccionada en el calendario
+
         String fechaCita = (String) tvFechaDato.getText();
 
-        //hora: listo :)------------------------------------
-        //Es la hora que ya se obtuvo del botón en verde: variable-> horaSeleccionada
-
-        //estado-------------------------------------------
-        //Es una cita pendiente, será 1
         estadoCita= 1;
 
-        //id_profesional: listo :)--------------------------
-        //El id del médico que atiende, ya se obtuvo: id_profesional
 
-        //id_paciente---------------------------------------
-        //Es el id del paciente logueado, se puede consultar en SQLite (pues se guardaron los datos del user logueado)
 
-        //consultar en SQLite el id del paciente
+        if(paciente != null){ //Si está logueado o si hay datos en SQLite
 
-        if(true){ //Si está logueado o si hay datos en SQLite
-            //id_paciente= lo que haya en SQLite;
-
-            id_paciente=1; //por ahora
-
+            id_paciente=paciente.getId_paciente();
             //esta Cita se envía a la base de datos para que quede almacenada
             Cita citaAgendada = new Cita(id_cita, fechaCita, horaSeleccionada, estadoCita, id_profesional, id_paciente);
             System.out.println("Se va a agendar la cita con los valores: ");
@@ -351,9 +342,9 @@ public class AgendarCitaActivity extends AppCompatActivity {
             System.out.println("id_paciente: "+citaAgendada.getId_paciente());
 
             //Escritura en la DB
-            //FirebaseDatabase database = FirebaseDatabase.getInstance();
-            //DatabaseReference myRef2 = database.getReference("Citas"); //clave
-            //myRef2.child().setValue(Cita); //valor
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef2 = database.getReference("Citas"); //clave
+            myRef2.setValue(citaAgendada); //valor
 
             //DatabaseReference usersRef = database.child("Citas");
             //Map<String, Cita> users = new HashMap<>();
@@ -361,10 +352,15 @@ public class AgendarCitaActivity extends AppCompatActivity {
             //usersRef.setValueAsync(users);
 
             //y se redirige al usuario al home activity con un Toast de "Cita agendada correctamente"
+            Toast.makeText(AgendarCitaActivity.this, "Cita agendada correctamente", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
 
         }else{
             //Si no está logueado, entonces se redirige a interfaz iniciar sesión y la Cita no se manda a la base de datos
-
+            Toast.makeText(AgendarCitaActivity.this, "Inicia sesión para agendar citas", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, IniciarSesionActivity.class);
+            startActivity(intent);
         }
     }
 

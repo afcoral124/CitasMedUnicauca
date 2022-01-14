@@ -35,6 +35,7 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
     private View.OnClickListener listener;
     private DatabaseReference myRef;
     private Profesional p;
+    private String profesion;
 
     public AdaptadorCitas(List<Cita> listaCitas) {
         this.listaCitas = listaCitas;
@@ -76,8 +77,8 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
                             value.add(persona);
                         //profesional p es el unico de la lista value
                         p = value.get(0);
-                        //Grafico los datos del profesional
-                        holder.tvProfesional.setText(p.getId_profesional());
+                        System.out.println(p.getNombre());
+                        holder.tvProfesional.setText(p.getNombre());
                         holder.tvCiudad.setText(p.getCiudad());
                     }
                 }
@@ -87,6 +88,8 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
                 Log.d(TAG, error.getMessage()); //Don't ignore errors!
             }
         });
+        //Grafico los datos del profesional
+
 
         //Consulta 2: profesion del profesional de la cita actual
         Query q2 =  myRef.child("Profesiones");
@@ -100,7 +103,9 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
                         value2.add(profesion);
                     }
                     //Grafico el dato de profesión
-                    holder.tvProfesion.setText(value2.get(p.getId_profesion()));
+                    profesion=value2.get(p.getId_profesion());
+                    System.out.println("profesion es: "+profesion);
+                    holder.tvProfesion.setText(profesion);
                 }
             }
             @Override
@@ -108,7 +113,6 @@ public class AdaptadorCitas extends RecyclerView.Adapter<AdaptadorCitas.ViewHold
                 Log.d(TAG, error.getMessage()); //Don't ignore errors!
             }
         });
-
 
 
         //Grafico los datos de fecha y hora que sí dependen del objeto cita

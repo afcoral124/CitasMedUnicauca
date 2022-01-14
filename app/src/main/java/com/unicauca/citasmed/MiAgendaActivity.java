@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +22,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.unicauca.citasmed.adapter.AdaptadorCitas;
 import com.unicauca.citasmed.adapter.AdaptadorProfesionales;
+import com.unicauca.citasmed.db.DbUsuarios;
 import com.unicauca.citasmed.modelo.Cita;
+import com.unicauca.citasmed.modelo.Paciente;
 import com.unicauca.citasmed.modelo.Profesional;
 
 import java.util.ArrayList;
@@ -29,25 +33,31 @@ import java.util.List;
 import citasmed.R;
 
 
-public class MiAgendaActivity extends Activity {
+public class MiAgendaActivity extends AppCompatActivity {
     private RecyclerView recyclerCitas;
     private DatabaseReference myRef;
     private int id_paciente;
+    private DbUsuarios dbUsuarios;
+    private Paciente paciente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mi_agenda);
+
+        dbUsuarios = new DbUsuarios(MiAgendaActivity.this);
+        paciente = dbUsuarios.LeerUsuarios();
+
 
         //Consultar en SQLite cual es el id del paciente
         //si el paciente está logueado:
-        if(true){
-            id_paciente=1;
+        if(paciente != null){
+            setContentView(R.layout.activity_mi_agenda);
+            id_paciente=paciente.getId_paciente(); //por ahora
             recyclerCitas = findViewById(R.id.RecyclerCitas);
             recyclerCitas.setLayoutManager(new LinearLayoutManager(this));
             consultarCitas();
         }else{//si no esta logueado
-            setContentView(R.layout.activity_mi_agenda);
+            setContentView(R.layout.layout_no_logueado);
         }
 
 

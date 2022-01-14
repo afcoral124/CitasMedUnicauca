@@ -48,6 +48,7 @@
                                 android:id="@+id/tvProfesion"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
                                 android:textStyle="bold"
                                 android:textColor="#2196F3"
                                 android:text="Medicina General"
