@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:onClick="iniciarSesion"
+                    android:onClick="abrirRegistrarUsuarioActivity"
                     app:cardElevation="5dp"
                     app:cardCornerRadius="10dp">
                     <TextView

@@ -34,8 +34,8 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
     private DatabaseReference myRef;
     private EditText etCorreo;
     private EditText etPassword;
-    private String message;
 
+    private String message;
     public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
 
     @Override
@@ -157,6 +157,14 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
         });
     }
 
+    public void abrirRegistrarUsuarioActivity(View view) {
+        System.out.println("Regresando a Home");
+        Intent intent = new Intent(IniciarSesionActivity.this, RegistrarUsuarioActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+
     public void regresar(View view){
         onBackPressed();
     }
@@ -169,4 +177,6 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
             super.onBackPressed();
         }
     }
+
+
 }

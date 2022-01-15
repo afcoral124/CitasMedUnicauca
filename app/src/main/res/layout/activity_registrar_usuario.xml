@@ -11,6 +11,10 @@
     android:fitsSystemWindows="true"
     tools:context="com.unicauca.citasmed.RegistrarUsuarioActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,24 +125,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="16dp"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif"
-                    android:text="Registrarme"
+                    android:text="Regístrate"
                     android:textColor="#D8302C2C"
                     android:textSize="30dp"
                     />
 
 
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginHorizontal="25dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Digita tus datos para crear una cuenta en el sistema"
+                            android:textColor="#D8302C2C"
+                            android:textSize="20dp"
+                            />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -209,6 +220,24 @@
                             android:inputType="textPassword"
                             />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#03A9F4"
+                            android:textStyle="bold"
+                            android:layout_marginHorizontal="25dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Confirmar Contraseña"
+                            android:textSize="20sp"/>
+
+                        <EditText
+                            android:id="@+id/etConfirmarPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="25dp"
+                            android:inputType="textPassword"
+                            />
+
                         <androidx.cardview.widget.CardView
                             android:id="@+id/btnRegistrarme"
                             android:layout_width="wrap_content"
@@ -232,13 +261,13 @@
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
-                </ScrollView>
+
 
 
 
             </LinearLayout>
         </LinearLayout>
-
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
@@ -250,5 +279,6 @@
         android:fitsSystemWindows="true">
 
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
 

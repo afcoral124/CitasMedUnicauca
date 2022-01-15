@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Mis citas"
-        android:icon="@drawable/ic_android"
+        android:icon="@drawable/ic_agenda"
         android:id="@+id/misCitas"></item>
-
     <group android:id="@+id/group1">
         <item android:title="Agendar citas"
-            android:icon="@drawable/ic_android"
+            android:icon="@drawable/ic_reloj"
             android:id="@+id/agendarCita"></item>
         <item android:title="Categorias de servicios"
-            android:icon="@drawable/ic_attach_file"
+            android:icon="@drawable/ic_medica"
             android:id="@+id/categoriaServicios"></item>
 
         <item android:title="Preguntas Frecuentes"
-            android:icon="@drawable/ic_attach_file"
+            android:icon="@drawable/interrogacion"
             android:id="@+id/acercaDe"></item>
 
     </group>
@@ -25,7 +24,7 @@
             <menu>
                 <item
                     android:id="@+id/sobreNosotros"
-                    android:icon="@drawable/ic_attach_file"
+                    android:icon="@drawable/ic_android"
                     android:title="Sobre nosotros"/>
                 <item
                     android:id="@+id/appMovil"
@@ -35,7 +34,7 @@
         </item>
     </group>
     <item android:title="Cerrar Sesión"
-        android:icon="@drawable/ic_attach_file"
+        android:icon="@drawable/ic_cerrar_sesion"
         android:id="@+id/cerrarSesion"></item>
 
 </menu>
