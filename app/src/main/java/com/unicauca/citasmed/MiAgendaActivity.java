@@ -43,6 +43,8 @@ public class MiAgendaActivity extends AppCompatActivity {
     private TextView tvNombrePaciente;
     private TextView tvIdentificacion;
 
+    public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +109,11 @@ public class MiAgendaActivity extends AppCompatActivity {
 
 
     public void abrirIniciarSesionActivity(View view){
-        Intent intent = new Intent(this, IniciarSesionActivity.class);
+        //Llamar a la actividad de iniciar sesión, con un intent que nos guarde
+        //la información del medico seleccionado
+        Intent intent = new Intent(MiAgendaActivity.this, IniciarSesionActivity.class);
+        String message = "H";
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 }

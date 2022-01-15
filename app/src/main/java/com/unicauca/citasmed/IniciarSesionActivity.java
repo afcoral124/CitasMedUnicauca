@@ -34,11 +34,18 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
     private DatabaseReference myRef;
     private EditText etCorreo;
     private EditText etPassword;
+    private String message;
+
+    public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
+
+        Intent intent = getIntent();
+        message = intent.getStringExtra(FragmentMedGeneral.EXTRA_MESSAGE);
+        System.out.println("message: "+message);
 
         //Menu hamburguesa
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -62,27 +69,25 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.misCitas:
-                Log.d("opcion 1", "seleccionada opcion 1");
+                abrirActividad(MiAgendaActivity.class);
                 break;
             case R.id.agendarCita:
-                Log.d("opcion 2", "seleccionada opcion 2");
                 abrirActividad(MainActivity.class);
                 break;
             case R.id.categoriaServicios:
-                Log.d("opcion 3", "seleccionada opcion 3");
                 abrirActividad(NuestrosProfesionalesActivity.class);
                 break;
             case R.id.acercaDe:
-                Log.d("opcion 3", "seleccionada opcion 3");
+                abrirActividad(MasInformacionActivity.class);
                 break;
             case R.id.sobreNosotros:
-                Log.d("opcion 3", "seleccionada opcion 3");
+                abrirActividad(SobreNosotrosActivity.class);
                 break;
             case R.id.appMovil:
-                Log.d("opcion 3", "seleccionada opcion 3");
+                abrirActividad(SobreNosotrosActivity.class);
                 break;
             case R.id.cerrarSesion:
-                Log.d("opcion 3", "seleccionada opcion 3");
+
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -113,24 +118,35 @@ public class IniciarSesionActivity extends AppCompatActivity implements Navigati
                         Paciente paciente = ds.getValue(Paciente.class);
 
                         if (paciente.getPassword().equals(etPassword.getText().toString())) {
-                            Toast.makeText(IniciarSesionActivity.this, "Nombre: "+paciente.getNombre(), Toast.LENGTH_LONG).show();
                             //Guardar paciente en la DB local
                             DbUsuarios dbUsuarios = new DbUsuarios(IniciarSesionActivity.this);
                             long id = dbUsuarios.InsertarUsuario(paciente.getId_paciente(), paciente.getNombre(),
                                     paciente.getUsuario(), paciente.getCorreo(), paciente.getPassword());
                             if (id > 0){
-                                Toast.makeText(IniciarSesionActivity.this, "Registro Guardado ", Toast.LENGTH_LONG).show();
+                                Toast.makeText(IniciarSesionActivity.this, "Sesión iniciada ", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(IniciarSesionActivity.this, "Registro No Guardado ", Toast.LENGTH_LONG).show();
+                                Toast.makeText(IniciarSesionActivity.this, "Error al iniciar sesión ", Toast.LENGTH_SHORT).show();
                             }
-                            Intent intent = new Intent(IniciarSesionActivity.this, HomeActivity.class);
-                            startActivity(intent);
+
+                            if(message.equals("H")){
+                                System.out.println("Regresando a Home");
+                                Intent intent = new Intent(IniciarSesionActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                System.out.println("Regresando a Agendar Cita");
+                                Intent intent = new Intent(IniciarSesionActivity.this, AgendarCitaActivity.class);
+                                intent.putExtra(EXTRA_MESSAGE, message);
+                                startActivity(intent);
+                            }
+
+
                         } else {
-                            Toast.makeText(IniciarSesionActivity.this, "Password is wrong", Toast.LENGTH_LONG).show();
+                            Toast.makeText(IniciarSesionActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
-                    Toast.makeText(IniciarSesionActivity.this, "User not found", Toast.LENGTH_LONG).show();
+                    Toast.makeText(IniciarSesionActivity.this, "Correo electrónico incorrecto", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -45,6 +45,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private TextView tvUsernameUsuarioNav;
     private CardView cvBotonIniciarSesion;
 
+    public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +70,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbUsuarios = new DbUsuarios(HomeActivity.this);
         if (db != null){
-            Toast.makeText(HomeActivity.this, "Leyendo Base de datos  ", Toast.LENGTH_SHORT).show();
+            System.out.println("Leyendo Base de datos");
         }else {
-            Toast.makeText(HomeActivity.this, "Error al crear la base de datos ", Toast.LENGTH_SHORT).show();
+            System.out.println("Error al crear la base de datos");
         }
         paciente = dbUsuarios.LeerUsuarios();
         if (paciente != null){
@@ -152,7 +153,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void abrirIniciarSesionActivity(View view){
-        Intent intent = new Intent(this, IniciarSesionActivity.class);
+        //Llamar a la actividad de iniciar sesión, con un intent que nos guarde
+        //la información del medico seleccionado
+        Intent intent = new Intent(HomeActivity.this, IniciarSesionActivity.class);
+        String message = "H";
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 

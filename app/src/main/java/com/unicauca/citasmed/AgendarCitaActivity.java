@@ -69,6 +69,7 @@ public class AgendarCitaActivity extends AppCompatActivity {
     private DbUsuarios dbUsuarios;
     private Paciente paciente;
 
+    public static final String EXTRA_MESSAGE = "com.unicauca.citasmed.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,15 +81,14 @@ public class AgendarCitaActivity extends AppCompatActivity {
         dbUsuarios = new DbUsuarios(AgendarCitaActivity.this);
         paciente = dbUsuarios.LeerUsuarios();
 
+
         //Recibimos el dato del médico seleccionado del intent
         Intent intent = getIntent();
         String message = intent.getStringExtra(FragmentMedGeneral.EXTRA_MESSAGE);
-        id_profesional = Integer.valueOf(message);
 
-        System.out.println("El intent recibió el id profesional: "+id_profesional);
-        consultarProfesional();
 
         //Relacionando las variables con los elementos xml
+
         tvFechaDato = findViewById(R.id.tvFechaDato);
         tvNombreProfesional= findViewById(R.id.tvNombreProfesional);
         tvProfesionProfesional= findViewById(R.id.tvProfesionProfesional);
@@ -107,6 +107,20 @@ public class AgendarCitaActivity extends AppCompatActivity {
         layoutHoras.setVisibility(View.INVISIBLE);
         relativeAgendar.setVisibility(View.INVISIBLE);
 
+        if(message.startsWith("A")){
+            String[] parts = message.split(",");
+            id_profesional = Integer.valueOf(parts[1]); // 123
+            tvFechaDato.setText(parts[2]); // 654321
+            consultarProfesional();
+            activarElementos();
+            consultarAgendaProfesional();
+        }
+        else {
+            id_profesional = Integer.valueOf(message);
+        }
+
+        System.out.println("El intent recibió el id profesional: "+id_profesional);
+        consultarProfesional();
     }
 
 
@@ -361,8 +375,14 @@ public class AgendarCitaActivity extends AppCompatActivity {
         }else{
             //Si no está logueado, entonces se redirige a interfaz iniciar sesión y la Cita no se manda a la base de datos
             Toast.makeText(AgendarCitaActivity.this, "Inicia sesión para agendar citas", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, IniciarSesionActivity.class);
+
+            //Llamar a la actividad de agendar cita, con un intent que nos guarde
+            //la información del medico seleccionado
+            Intent intent = new Intent(AgendarCitaActivity.this, IniciarSesionActivity.class);
+            String message = "A,"+id_profesional+","+fechaCita;
+            intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
+
         }
     }
 
