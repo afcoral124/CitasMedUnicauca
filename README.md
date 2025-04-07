@@ -8,7 +8,7 @@ El objetivo del aplicativo es facilitar a los usuarios el agendamiento de citas 
 * Agendar una cita de acuerdo a los horarios disponibles.
 * Podrán solicitar exámenes de laboratorio.
 
-
+![Image](https://github.com/user-attachments/assets/1c3becb6-c1ce-43ef-9e73-4ff931cc3b3a)
 
 
 # Verificación de Principios de Diseño
