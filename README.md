@@ -1,6 +1,6 @@
 # Proyecto de Aplicación móvil Para Android
 
-En esta app el usuario puede agendar citas médicas de acuerdo a sus necesidades, contando con un catálogo de médicos profesionales de distintas especialidades, cuyos nombres y horarios se encuentran en una base de datos utilizando Firebase, de donde a través de su API se obtienen todos los datos para mostrárselos al usuario.
+En esta app, desarrollada en Android Studio con Java, el usuario puede agendar citas médicas de acuerdo a sus necesidades, contando con un catálogo de médicos profesionales de distintas especialidades, cuyos nombres y horarios se encuentran en una base de datos utilizando Firebase, de donde a través de su API se obtienen todos los datos para mostrárselos al usuario.
 
 El objetivo del aplicativo es facilitar a los usuarios el agendamiento de citas para servicios de salud con una tarifa diferencial, con esta aplicación los usuarios podrán :
 
